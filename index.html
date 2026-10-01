@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f766e" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Spese al volo" />
+  <meta name="description" content="Annota le spese in pochi secondi. Dati salvati solo sul tuo dispositivo." />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <title>Spese al volo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">PRATICO SUBITO</p>
+        <h1>Spese al volo</h1>
+        <p class="subtitle">Segna una spesa in pochi secondi, prima di dimenticarla.</p>
+      </div>
+      <button id="installBtn" class="icon-btn" hidden aria-label="Installa app">⬇️</button>
+    </header>
+
+    <main>
+      <section class="summary-grid" aria-label="Riepilogo">
+        <article class="summary-card primary">
+          <span>Oggi</span>
+          <strong id="todayTotal">€ 0,00</strong>
+        </article>
+        <article class="summary-card">
+          <span>Ultimi 7 giorni</span>
+          <strong id="weekTotal">€ 0,00</strong>
+        </article>
+      </section>
+
+      <section class="card add-card">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">NUOVA SPESA</p>
+            <h2>Aggiungi in un attimo</h2>
+          </div>
+        </div>
+
+        <form id="expenseForm" autocomplete="off">
+          <label class="field amount-field">
+            <span>Importo</span>
+            <div class="amount-wrap">
+              <span>€</span>
+              <input id="amount" name="amount" inputmode="decimal" placeholder="0,00" required />
+            </div>
+          </label>
+
+          <div class="two-col">
+            <label class="field">
+              <span>Categoria</span>
+              <select id="category" name="category">
+                <option>Spesa</option>
+                <option>Bar / Caffè</option>
+                <option>Trasporti</option>
+                <option>Casa</option>
+                <option>Salute</option>
+                <option>Svago</option>
+                <option>Figli</option>
+                <option>Altro</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Pagamento</span>
+              <select id="payment" name="payment">
+                <option>Carta</option>
+                <option>Contanti</option>
+                <option>Bonifico</option>
+                <option>Altro</option>
+              </select>
+            </label>
+          </div>
+
+          <label class="field">
+            <span>Nota <em>(facoltativa)</em></span>
+            <input id="note" name="note" maxlength="80" placeholder="es. pranzo, farmacia, benzina..." />
+          </label>
+
+          <button class="save-btn" type="submit">Salva spesa</button>
+        </form>
+      </section>
+
+      <section class="card list-card">
+        <div class="section-head list-head">
+          <div>
+            <p class="eyebrow">MOVIMENTI</p>
+            <h2>Spese recenti</h2>
+          </div>
+          <button id="exportBtn" class="text-btn">Esporta CSV</button>
+        </div>
+
+        <div id="emptyState" class="empty-state">
+          <div class="empty-icon">✓</div>
+          <p>Ancora nessuna spesa.</p>
+          <span>La prossima che fai, segnala qui.</span>
+        </div>
+        <div id="expenseList" class="expense-list"></div>
+      </section>
+
+      <section class="card privacy-card">
+        <strong>🔒 I tuoi dati restano sul telefono</strong>
+        <p>Nessun account, nessun cloud: le spese vengono salvate solo su questo dispositivo.</p>
+      </section>
+
+      <section id="iosInstall" class="card install-help" hidden>
+        <strong>Installa sul tuo iPhone</strong>
+        <p>Apri questa pagina in Safari → Condividi → <b>Aggiungi alla schermata Home</b>.</p>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
